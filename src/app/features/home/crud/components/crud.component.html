@@ -1,0 +1,102 @@
+<div class="container" rtl>
+  <h1> title</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2> subtitle1</h2>
+      <mat-card *ngFor="let book of books$ | async"
+        (click)=select(book)>
+        <h3>{{book.title}}</h3>
+        <small>{{book.author}}</small>
+      </mat-card>
+      <p *ngIf="(books$ | async)?.length === 0"> 0 </p>
+      <button type="button" mat-fab color="primary" class="add"
+        *ngIf="!isEditing" (click)="addNew()">
+        <fa-icon icon="plus"></fa-icon>
+      </button>
+    </div>
+    <div class="col-md-6">
+      <span class="d-flex justify-content-between">
+        <h2> subtitle2</h2>
+        <span class="d-flex justify-content-end">
+          <span *ngIf="selectedBook$ | async as selectedBook">
+            <button mat-icon-button color="accent" *ngIf="!isEditing">
+              <fa-icon icon="edit" (click)="edit(selectedBook)"
+                matTooltipPosition="above">
+              </fa-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(selectedBook)">
+              <fa-icon icon="trash"
+                matTooltipPosition="above">
+              </fa-icon>
+            </button>
+            <button mat-icon-button (click)="deselect()">
+              <fa-icon icon="times"
+                matTooltipPosition="above">
+              </fa-icon>
+            </button>
+          </span>
+        </span>
+      </span>
+
+      <form [formGroup]="bookFormGroup" [style.display]="isEditing ? 'block' : 'none'"
+      >
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder=" placeholder1"
+              formControlName="title" required autofocus>
+            <mat-error *ngIf="bookFormGroup.get('title').invalid">
+               placeholder1
+               error
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder=" placeholder2"
+              formControlName="author" required>
+            <mat-error *ngIf="bookFormGroup.get('author').hasError('required')">
+               placeholder2
+               error
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <textarea matInput placeholder=" placeholder3"
+              formControlName="description" rows="5"></textarea>
+            <mat-error *ngIf="bookFormGroup.get('description').invalid">
+               placeholder1
+               error
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+            <button (click)="save()" mat-raised-button color="primary">
+              save
+            </button>
+            <button (click)="cancelEditing()" mat-raised-button>
+              cancel
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <ng-container *ngIf="!isEditing">
+        <div *ngIf="selectedBook$ | async as selectedBook; else noSelectedBookTmpl">
+          <h3>{{ selectedBook.title }}</h3>
+          <mat-divider></mat-divider>
+          <p>{{ selectedBook.description }}</p>
+          <i>{{ selectedBook.author }}</i>
+        </div>
+
+        <ng-template #noSelectedBookTmpl>
+          <p>
+            text <code>@ngrx/entity</code>.
+          </p>
+        </ng-template>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

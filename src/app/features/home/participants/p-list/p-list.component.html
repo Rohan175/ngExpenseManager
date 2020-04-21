@@ -1,0 +1,12 @@
+<mat-card *ngFor="let participant of participants$ | async">
+    {{participant.name}}
+</mat-card>
+
+<mat-card>
+    <mat-form-field>
+        <input matInput placeholder="label" [value]="newParticipant" (keyup)="onNameChange($event.target)">
+    </mat-form-field>
+    <button mat-raised-button color="color" (click)="onClick()">
+        <fa-icon icon="check"></fa-icon>
+    </button>
+</mat-card>

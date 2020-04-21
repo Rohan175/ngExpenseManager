@@ -1,0 +1,35 @@
+.groupItem{
+    width: 70px;
+    margin: 4px;
+ 
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+.fab{
+    color:black;
+    background-color: white;
+}
+
+.selectedGroup{
+    background-color: goldenrod;
+    color: white;
+    font-weight: 500;
+}
+.main { 
+    overflow: auto;
+    background-color: cornsilk;
+}
+
+input{
+    width: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Roboto;
+    margin: 0 10px 0 0 ;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

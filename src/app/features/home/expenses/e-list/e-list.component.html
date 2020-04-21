@@ -1,0 +1,8 @@
+<!-- {{allExpensesWithParticipants$ | async | json}} -->
+
+<div *ngFor="let expense of allExpensesWithParticipants$ | async; trackBy:trackBackExpense">
+
+    <mat-divider></mat-divider>
+    <e-item [expense]="expense" (addParticipant)="addParticipant($event)"></e-item>
+    <mat-divider></mat-divider>
+</div>

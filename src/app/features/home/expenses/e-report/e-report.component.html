@@ -1,0 +1,33 @@
+
+<div class="wrapper">
+<span> Zero state logic for minimum transations</span>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="main">
+    
+    <div *ngFor="let p of pWithB | keyvalue">
+        <mat-card >
+            <mat-card-title class="matCardTitle">
+            {{p.value.name}}
+        </mat-card-title>
+            <mat-card-subtitle  [ngClass]="{'greenEC': p.value.balance > 0, 'redEC' : p.value.balance < 0}">
+                <span> {{p.value.balance}}</span>
+            </mat-card-subtitle>
+        </mat-card>
+    </div>
+</div>
+
+<span> Min. Transations Requried </span>
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="7px">
+    <div *ngFor="let d of data;" class="below">
+        <mat-card class="expensecard">
+            <mat-card-title class="matCardTitle">{{pWithB[d.pid].name}}</mat-card-title>
+            <mat-card-subtitle>pays <span>{{d.amount}}</span> to</mat-card-subtitle>
+            <mat-card-content>
+                {{pWithB[d.paysToId].name}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<button mat-fab class="fab" [routerLink]="['../']">
+    <fa-icon icon="stream"></fa-icon>
+</button>
+</div>

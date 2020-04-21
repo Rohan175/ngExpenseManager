@@ -1,0 +1,14 @@
+<div *ngFor="let expense of allExpenses$ | async; trackBy:trackBackExpense">
+
+    <mat-divider></mat-divider>
+    <e-item2 [expense]="expense" (addParticipant)="addParticipant($event)"></e-item2>
+    <mat-divider></mat-divider>
+
+</div>
+<button mat-fab class="fab" (click)="addExpense()">
+    <fa-icon icon="plus"></fa-icon>
+</button>
+
+<button *ngIf="showReportBtn" mat-fab class="fabreport" [routerLink]="['report']">
+    <fa-icon icon="lightbulb"></fa-icon>
+</button>
