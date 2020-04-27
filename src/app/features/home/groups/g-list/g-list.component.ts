@@ -4,7 +4,6 @@ import { State } from '../../home.state';
 import { Groups } from '../store/groups.model';
 import { Observable } from 'rxjs';
 import {selectAllGroups} from '../store/groups.selectors';
-import { Participant } from '../../participants/store/participant.model';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { addGroups } from '../store/groups.actions';

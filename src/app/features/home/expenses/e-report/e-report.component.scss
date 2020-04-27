@@ -28,7 +28,7 @@ span{
 .matCardTitle{
     font-size: 19px;
 }
-.wrapper{
+.rwrapper{
     padding:16px;
     height : 75vh;
 }
@@ -39,7 +39,7 @@ span{
     $background : map-get($theme,background);
     $foreground: map-get($theme, foreground);
   
-    .wrapper {
+    .rwrapper {
         background-color: mat-color($background, background);
     }
 
