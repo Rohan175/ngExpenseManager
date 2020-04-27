@@ -2,12 +2,6 @@ import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
 import { AppState } from '../../core/core.state';
 
-import { todosReducer } from './todos/todos.reducer';
-import { TodosState } from './todos/todos.model';
-
-import { BookState } from './crud/books.model';
-import { bookReducer } from './crud/books.reducer';
-
 import { ParticipantState } from './participants/store/participant.model';
 import { participantReducer } from './participants/store/participant.reducer';
 
@@ -22,17 +16,13 @@ export const FEATURE_NAME = 'home';
 export const selecthome = createFeatureSelector<State, homeState>(
   FEATURE_NAME
 );
-export const reducers: ActionReducerMap<homeState> = {
-  todos: todosReducer,
-  books :bookReducer,
+export const reducers: ActionReducerMap<homeState> = {  
   participants: participantReducer,
   expenses: expenseReducer,
   groups: groupReducer,
 };
 
 export interface homeState {
-  todos: TodosState;
-  books : BookState;
   participants : ParticipantState;
   expenses: ExpenseState;
   groups: GroupState;

@@ -1,14 +1,14 @@
-<div fxLayout="row nowrap" fxLayoutAlign="start center" class="main">
+<div fxLayout="row nowrap" fxLayoutAlign="center center" class="gmain">
     <div *ngFor="let group of allGroups$ | async;">
         <mat-card class="groupItem" (click)="select(group)" [ngClass]="{'selectedGroup': group.id == selectedGroup}">
             {{group.name}}
         </mat-card>
     </div>
-    <button *ngIf="!add" mat-mini-fab class="fab" (click)="add=true">
+    <button *ngIf="!add" mat-mini-fab (click)="add=true">
         <fa-icon icon="plus"></fa-icon>
     </button>
     <mat-card *ngIf="add"  class="groupItem" >
         <input [value]="grpName" (change)="nameChange($event)"/>
-        <fa-icon mat-card-avatar class="fab" icon="check" (click)="addGroup(group)"></fa-icon>
+        <fa-icon mat-card-avatar icon="check" (click)="addGroup()"></fa-icon>
     </mat-card>
 </div>

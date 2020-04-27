@@ -1,2 +1,4 @@
-<app-main-layout></app-main-layout>
+<div [class]="($theme | async) + '-theme'">
+<app-main-layout ></app-main-layout>
+</div>
 <router-outlet></router-outlet>

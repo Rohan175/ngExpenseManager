@@ -1,3 +1,8 @@
+.list{
+    overflow-y: auto;
+    height: 80vh;
+}
+
 .fab{
     position: fixed;
     bottom: 30px;
@@ -7,4 +12,14 @@
     position: fixed;
     bottom: 30px;
     right : 100px
+}
+
+@import "~@angular/material/theming";
+
+@mixin e-layout($theme) {
+    $background : map-get($theme,background);
+
+    .main {
+        background-color: mat-color($background, background);
+    }
 }

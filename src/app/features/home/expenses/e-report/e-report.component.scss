@@ -3,13 +3,13 @@
     bottom: 30px;
     right : 30px
 }
-.main {
-    padding-bottom: 40px;
-    margin-top: 20px;
+.emain {
+    padding: 20px;
+    margin: 20px;
     overflow-x: auto;
 }
 .expensecard {
-    width: 40vw;
+    width: calc(50vw / 2)
 }
 .below{
     padding-top: 10px;
@@ -19,10 +19,32 @@ span{
     font-size: medium;
 }
 
+.text{
+    padding-top: 8px;
+    display: block;
+    margin-left: 20px;
+}
+
 .matCardTitle{
     font-size: 19px;
 }
 .wrapper{
     padding:16px;
-    background-color: whitesmoke;
+    height : 75vh;
+}
+
+@import "~@angular/material/theming";
+
+@mixin er-layout($theme) {
+    $background : map-get($theme,background);
+    $foreground: map-get($theme, foreground);
+  
+    .wrapper {
+        background-color: mat-color($background, background);
+    }
+
+    .text {
+        color: mat-color($foreground, text);
+   
+    }
 }

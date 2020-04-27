@@ -10,7 +10,6 @@
       autocomplete="off"
       tabindex="1"
       type="text"
-      placeholder=" username"
       formControlName="username" />
     <mat-icon matSuffix>account_circle</mat-icon>
     <mat-error>
@@ -20,24 +19,6 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>password</mat-label>
-    <input matInput
-      autocomplete="off"
-      tabindex="2"
-      type="password"
-      placeholder="password"
-      formControlName="password" />
-    <mat-icon matSuffix>lock</mat-icon>
-    <mat-error>
-      <span *ngIf="formErrors.password.required">
-          {{ 'auth.error.password.required' | translate }}
-      </span>
-    </mat-error>
-  </mat-form-field>
-
-  <a >Forgot Password?</a>
-
   <div>
     <span fxFlex></span>
     <button mat-raised-button
@@ -45,14 +26,9 @@
       color="accent"
       type="submit"
       class="action-button w-100"
-      [disabled]="form.invalid || pending">
+      [disabled]="form.invalid">
       login
     </button>
   </div>
-
 </form>
 
-<div class="text-center mt-32">
-  <span>Don't have an account? </span>
-  <a>Create an account</a>
-</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { State } from '../home/home.state';
+import { State } from '../../home.state';
 import { Router } from '@angular/router';
 
 @Component({

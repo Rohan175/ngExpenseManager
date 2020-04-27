@@ -10,10 +10,10 @@ export class HomeService {
 
   
   getRandomColor() {
-    var letters = '89ABCDEF';
+    var letters = 'EF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 8)];
+      color += letters[Math.floor(Math.random() * 2)];
     }
     return color;
   }

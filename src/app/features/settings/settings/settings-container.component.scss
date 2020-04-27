@@ -1,20 +1,7 @@
-.container {
-  margin-top: 20px;
+.smain {
+  padding-top: 20px;
   padding: 40px;
-}
-
-h1 {
-  margin: 0 0 20px 0;
-  text-transform: uppercase;
-}
-
-h2 {
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-}
-
-.group {
-  margin: 0 0 40px 0;
+  height: 100vh;
 }
 
 .icon-form-field {
@@ -35,4 +22,14 @@ mat-icon {
 
 mat-form-field {
   flex: 1 0 auto;
+}
+
+@import "~@angular/material/theming";
+
+@mixin s-layout($theme) {
+    $background : map-get($theme,background);
+
+    .smain {
+        background-color: mat-color($background, background);
+    }
 }

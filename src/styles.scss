@@ -2,3 +2,44 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/theming';
+@import './app/features/home/groups/g-list/g-list.component.scss';
+@import './app/features/home/components/home/home.component.scss';
+@import './app/features/home/expenses/e-list2/e-list2.component.scss';
+@import './app/features/home/expenses/e-item2/e-item2.component.scss';
+@import './app/features/home/expenses/e-report/e-report.component.scss';
+@import './app/features/settings/settings/settings-container.component.scss';
+
+@mixin custom-components-theme($theme) {
+  @include g-list($theme);
+  @include h-layout($theme);
+  @include e-layout($theme);
+  @include er-layout($theme);
+  @include e-item-layout($theme);
+  @include s-layout($theme);
+}
+
+$light-primary: mat-palette($mat-grey, 200, 500, 300);
+$light-accent: mat-palette($mat-blue-grey, 100);
+$light-theme: mat-light-theme(
+  $light-primary,
+  $light-accent
+);
+.light-theme {
+    @include angular-material-theme($light-theme);    
+    @include custom-components-theme($light-theme);
+}
+
+$dark-primary: mat-palette($mat-grey, 700, 300, 900);
+$dark-accent: mat-palette($mat-blue-grey, 400);
+$dark-theme: mat-dark-theme(
+  $dark-primary,
+  $dark-accent
+);
+.dark-theme {
+  @include angular-material-theme($dark-theme);    
+  @include custom-components-theme($dark-theme);
+}
+
+  

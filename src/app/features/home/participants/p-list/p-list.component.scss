@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+
+@mixin g-list($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+  
+.groupItem{
+    width: auto;
+    margin: 4px;
+    margin-right: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+.selectedGroup{
+    color: mat-color($primary, default-contrast);
+    background-color: mat-color($primary);
+    font-weight: 500;
+}
+.main { 
+    overflow: auto;
+    background-color: mat-color($primary);
+    // padding-bottom: 8px;;
+    // display: flex;
+    // justify-content: center;
+}
+
+input{
+    width: 100px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Roboto;
+    margin: 0 10px 0 0 ;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+}

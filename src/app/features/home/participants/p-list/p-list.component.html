@@ -1,12 +1,13 @@
-<mat-card *ngFor="let participant of participants$ | async">
-    {{participant.name}}
-</mat-card>
+<div fxLayout="row nowrap" fxLayoutAlign="center center" class="main">
+    <mat-card class="groupItem" *ngFor="let participant of participants$ | async">
+        {{participant.name}}
+    </mat-card>
 
-<mat-card>
-    <mat-form-field>
-        <input matInput placeholder="label" [value]="newParticipant" (keyup)="onNameChange($event.target)">
-    </mat-form-field>
-    <button mat-raised-button color="color" (click)="onClick()">
-        <fa-icon icon="check"></fa-icon>
+    <button *ngIf="!add" mat-mini-fab (click)="add=true">
+        <fa-icon icon="plus"></fa-icon>
     </button>
-</mat-card>
+    <mat-card *ngIf="add"  class="groupItem" >
+        <input [value]="newParticipant" (change)="onNameChange($event.target)"/>
+        <fa-icon mat-card-avatar icon="check" (click)="onClick()"></fa-icon>
+    </mat-card>
+</div>

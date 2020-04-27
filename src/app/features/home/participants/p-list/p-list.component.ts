@@ -18,7 +18,7 @@ export class PListComponent implements OnInit {
 
   participants$: Observable<Participant[]> = this.store.pipe(select(selectAllParticipants));
   newParticipant: string = "";
-
+  add:boolean = false;
   constructor(
     public store: Store<State>, ) { }
 
@@ -37,6 +37,8 @@ export class PListComponent implements OnInit {
         name : this.newParticipant,
       }
     }));
+    this.add=false;
+    this.newParticipant ="";
   }
 
 }

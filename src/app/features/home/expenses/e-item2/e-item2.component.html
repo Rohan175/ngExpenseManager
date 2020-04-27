@@ -1,37 +1,40 @@
-<mat-card [style.background-color]="color">
+<div class="itemwrapper">
+<mat-card [style.background-color]="color" class="itemmain">
     <mat-card-header>
+        <mat-card-actions>
+            <button class="minifab" (click)="deleteExpense()">
+                <fa-icon icon="times"></fa-icon>
+            </button>
+        </mat-card-actions>
         
-    <mat-card-actions>
-        <button class="minifab" (click)="deleteExpense()">
-            <fa-icon icon="times"></fa-icon>
-        </button>
-    </mat-card-actions>
         <mat-card-title>
 
             <span class="text">Expense </span>
-            <mat-card  *ngIf="!editMode" (click)="editMode = true;">
+            <mat-card  *ngIf="!editMode" (click)="editMode = true;" >
                 <span>
                     {{expense.name}}
                 </span>
             </mat-card>
             <mat-card *ngIf="editMode" >
-                <input [value]="expense.name" (change)="nameChange($event)"/>
+                <input autofocus [value]="expense.name" (change)="nameChange($event)" (blur)="editMode=false;"/>
                 <fa-icon mat-card-avatar *ngIf="editMode" icon="check" (click)="editMode=false;"></fa-icon>
             </mat-card>
             <span class="text">Amount </span>
-            <mat-card>
-                <span *ngIf="!editMode2" (click)="editMode2 = true;">
+            <mat-card *ngIf="!editMode2" (click)="editMode2=true;">
+                <span (click)="editMode2 = true;">
                     {{expense.amount}}
                 </span>
-                <input *ngIf="editMode2" [value]="expense.amount" (change)="amountChange($event)"/>
-                <fa-icon mat-card-avatar *ngIf="editMode2" icon="check" (click)="editMode2=false;"></fa-icon>
+            </mat-card>
+            <mat-card *ngIf="editMode2" >
+                <input autofocus [value]="expense.amount" (blur)="editMode2=false;" (change)="amountChange($event)"/>
+                <fa-icon mat-card-avatar icon="check" (click)="editMode2=false;"></fa-icon>
             </mat-card>
             
         </mat-card-title>
         <mat-card-subtitle>
         <span class="text">Paid By</span>
-            <div *ngIf="payedByParticipant$ | async as pb" class="selector">
-                <mat-select [(ngModel)]="pb" (selectionChange)="payedByParticipantChange($event)">
+            <div *ngIf="payedByParticipant" class="selector">
+                <mat-select [(ngModel)]="payedByParticipant" (selectionChange)="payedByParticipantChange($event)">
                     <mat-option *ngFor="let p of expense.participantIds; " [value]="allParticipants[p]">
                         {{allParticipants[p].name}}
                     </mat-option>
@@ -91,3 +94,4 @@
         </mat-chip-list>
     </mat-card-content>
 </mat-card>
+</div>

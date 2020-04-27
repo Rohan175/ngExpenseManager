@@ -23,43 +23,44 @@ export class EItem2Component implements OnInit, OnChanges, AfterViewInit {
   @Input() expense: Expense;
   @Output() addParticipant = new EventEmitter<Object>();
   @ViewChild(MatMenu) matMenu: MatMenu
-  
+  selectedPB: Participant;
   addParticipantUI: boolean = false;
   menuParticipants: Participant[] = [];
   menuParticipants$: BehaviorSubject<Participant[]> = new BehaviorSubject<Participant[]>(null);
 
-  color:string = "#FFF"
+  color: string = "#FFF"
 
   showAdd: boolean = true;
   allParticipants: Dictionary<Participant>;
   allParticipants$ = this.store.pipe(select(selectParticipantsEntities))
-  payedByParticipant$:Observable<Participant> ;
+  payedByParticipant: Participant;
 
-  editMode:boolean;
-  editMode2:boolean;
-  constructor(public store: Store<State>, private service: HomeService, private router : ActivatedRoute) { }
+  editMode: boolean;
+  editMode2: boolean;
+  constructor(public store: Store<State>, private service: HomeService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
-    if(this.expense.name == ''){
+
+    if (this.expense.name == '') {
       this.editMode = true;
-    }else{
+    } else {
       this.editMode = false;
     }
 
-    if(this.expense.amount == null){
+    if (this.expense.amount == null) {
       this.editMode2 = true;
-    }else{
-      this.editMode2= false;
+    } else {
+      this.editMode2 = false;
     }
 
     this.allParticipants$.subscribe((ps) => {
       this.allParticipants = ps;
-      console.log("debug all participants",ps)
+      console.log("debug all participants", ps)
       this.updateMenu();
     });
 
-    this.payedByParticipant$ = this.store.pipe(select(selectParticipantFromId(this.expense?.payedBy)))
+    this.store.pipe(select(selectParticipantFromId(this.expense?.payedBy)))
+      .subscribe(d => this.payedByParticipant = d)
 
 
     this.menuParticipants$.subscribe(e => console.log("debug menu", e))
@@ -74,22 +75,22 @@ export class EItem2Component implements OnInit, OnChanges, AfterViewInit {
   }
 
   updateMenu = () => {
-    if(!this.allParticipants)
+    if (!this.allParticipants)
       return
-    const newMenu : Participant[] = Object.keys(this.allParticipants).filter(
+    const newMenu: Participant[] = Object.keys(this.allParticipants).filter(
       pid => this.expense.participantIds.indexOf(pid) == -1
     ).map(
       pid => this.allParticipants[pid]
     );
 
     this.menuParticipants$.next(
-     newMenu 
+      newMenu
     );
-    
+
     this.menuParticipants = newMenu;
-    if(newMenu.length == 0){
+    if (newMenu.length == 0) {
       this.showAdd = false;
-    }else{
+    } else {
       this.showAdd = true;
     }
     console.log("debug updated ", newMenu)
@@ -113,40 +114,40 @@ export class EItem2Component implements OnInit, OnChanges, AfterViewInit {
     this.addParticipant.emit({ expenseId: expense.id, participantId: participant.id });
   }
 
-  payedByParticipantChange({value}:{value:Participant}){
+  payedByParticipantChange({ value }: { value: Participant }) {
     console.log(value.id)
     this.store.dispatch(updatePayedByInExpense({
-      expenseId : this.expense.id,
-      payedById : value.id
+      expenseId: this.expense.id,
+      payedById: value.id
     }))
   }
 
-  nameChange(e){
+  nameChange(e) {
     console.log(e.target.value)
     this.store.dispatch(updateNameInExpense({
-      expenseId : this.expense.id,
-      name : e.target.value
+      expenseId: this.expense.id,
+      name: e.target.value
     }))
   }
-  amountChange(e){
+  amountChange(e) {
     console.log(e.target.value)
     let amount = 0;
-    try{
+    try {
       amount = parseInt(e.target.value);
       this.store.dispatch(updateAmountInExpense({
-      expenseId : this.expense.id,
-      amount : amount
+        expenseId: this.expense.id,
+        amount: amount
       }))
-    }catch(e){
+    } catch (e) {
 
     }
   }
 
-  deleteExpense(){
+  deleteExpense() {
     this.store.dispatch(deleteExpense({
-      id:this.expense.id
+      id: this.expense.id
     }))
-    if(this.router.snapshot.url[1]){
+    if (this.router.snapshot.url[1]) {
       this.store.dispatch(removeExpenseInGroup({
         groupId: this.router.snapshot.url[1].toString(),
         expenseId: this.expense.id
@@ -155,11 +156,11 @@ export class EItem2Component implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  removeParticipant(p){
+  removeParticipant(p) {
     console.log("debug p", p);
     this.store.dispatch(removeParticipantInExpenses({
-      expenseId:this.expense.id,
-      participantId : p
+      expenseId: this.expense.id,
+      participantId: p
     }))
   }
 
