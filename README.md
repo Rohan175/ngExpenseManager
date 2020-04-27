@@ -64,6 +64,13 @@ Prevent recalculation 🤔
 Maybe gredy logic is not good enough
 https://stackoverflow.com/questions/877728/what-algorithm-to-use-to-determine-minimum-number-of-actions-required-to-get-the/
 
+I can select a lazy loaded component at app lvl 🤕🤒😷 (selecting setting from state)
+
+still can't check import export modules..How to test ? (in production)
+
+Different model for view? any?
+
+
 
 ## Experiment With
 - Different Participants for each Grp
