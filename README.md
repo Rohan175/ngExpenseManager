@@ -1,3 +1,6 @@
+## Live Demo
+[rohan175.github.io/ngExpenseManager](rohan175.github.io/ngExpenseManager)
+
 ## Architecture
 As we had talked on architecture. I experimented with multiple projects and have finalized one.
 
